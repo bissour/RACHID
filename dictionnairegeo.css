@@ -1,0 +1,87 @@
+section
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+section .book
+{
+    position: relative;
+    width: 383px;
+    height: 567px;
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.2);
+    transform-style: preserve-3d;
+    
+    /* transform: rotateX(20deg); */
+    transition: 0.5s;
+    animation: rotate infinite 10s;
+}
+section .book:hover
+{
+    transform: rotateY(10deg);
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.2);
+}
+/* section .book:active
+{
+    transform: rotateY(180deg);
+} */
+section .book:before
+{
+    content: '';
+    position: absolute;
+    width: 90px;
+    height: 100%;
+    transform-origin: left;
+    background: url(https://1.bp.blogspot.com/-m44y9PjSrSc/X3JSVj10x4I/AAAAAAAAEJE/WhkVWDXvG8EPv73OPQk-x5oo0rZKI1q9ACLcBGAsYHQ/s0/side.jpg);
+    background-position: center;
+    box-shadow: 0px 20px 20px rgba(0,0,0,0.2);
+    transform: rotateY(90deg);
+}
+
+section .book:after
+{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    background: url(https://1.bp.blogspot.com/-mVm1rtFU1c0/X3JSVt2Hn-I/AAAAAAAAEJI/tG9YlhzoUHACr_Zl4GNqCqKd6P4-ZvHwQCLcBGAsYHQ/s0/back.jpg);
+    background-position: center;
+    transform: rotateY(180deg) translateZ(90px);
+}
+section .book img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+@keyframes rotate{
+	0%
+	{
+        transform: rotatey(5deg);
+	}
+	20%
+	{
+		transform: rotateY(20deg);
+    }
+    40%
+	{
+		transform: rotateY(60deg);
+    }
+    60%
+	{
+		transform: rotateY(160deg);
+    }
+    95%
+	{
+		transform: rotateY(180deg);
+    }
+    100%
+	{
+		transform: rotateY(5deg);
+	}
+}
