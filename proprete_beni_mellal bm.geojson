@@ -1,0 +1,580 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.345591545104981,
+          32.342007724597885
+        ]
+      },
+      "properties": {
+        "id": "PN3",
+        "lat": 32.342007724597885,
+        "lng": -6.345591545104981,
+        "priorite": "Élevée",
+        "etat": "À traiter",
+        "secteur": "Secteur 3",
+        "observations": "Déchets encombrants",
+        "date": "2026-11-01",
+        "demo": true,
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.361,
+          32.33
+        ]
+      },
+      "properties": {
+        "id": "PN4",
+        "lat": 32.33,
+        "lng": -6.361,
+        "priorite": "Critique",
+        "etat": "À traiter",
+        "secteur": "Secteur 4",
+        "observations": "Point noir récurrent",
+        "date": "2026-11-01",
+        "demo": true,
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.339,
+          32.3365
+        ]
+      },
+      "properties": {
+        "id": "PN5",
+        "lat": 32.3365,
+        "lng": -6.339,
+        "priorite": "Moyenne",
+        "etat": "Contrôlée",
+        "secteur": "Secteur 1",
+        "observations": "Nettoyé récemment",
+        "date": "2026-11-01",
+        "demo": true,
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.334841251373292,
+          32.33688105440228
+        ]
+      },
+      "properties": {
+        "id": "PN101",
+        "lat": 32.33688105440228,
+        "lng": -6.334841251373292,
+        "priorite": "Moyenne",
+        "etat": "À traiter",
+        "secteur": "",
+        "observations": "",
+        "date": "2026-11-01",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.332534551620484,
+          32.336708768951645
+        ]
+      },
+      "properties": {
+        "id": "PN104",
+        "lat": 32.336708768951645,
+        "lng": -6.332534551620484,
+        "priorite": "Moyenne",
+        "etat": "À traiter",
+        "secteur": "",
+        "observations": "",
+        "date": "2026-11-01",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.332523822784425,
+          32.33732536799815
+        ]
+      },
+      "properties": {
+        "id": "PN105",
+        "lat": 32.33732536799815,
+        "lng": -6.332523822784425,
+        "priorite": "Moyenne",
+        "etat": "À traiter",
+        "secteur": "",
+        "observations": "",
+        "date": "2026-11-01",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.333339214324952,
+          32.337996368069604
+        ]
+      },
+      "properties": {
+        "id": "PN106",
+        "lat": 32.337996368069604,
+        "lng": -6.333339214324952,
+        "priorite": "Moyenne",
+        "etat": "À traiter",
+        "secteur": "",
+        "observations": "",
+        "date": "2026-11-01",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.353305578231812,
+          32.33980316613478
+        ]
+      },
+      "properties": {
+        "id": "PN110",
+        "lat": 32.33980316613478,
+        "lng": -6.353305578231812,
+        "priorite": "Faible",
+        "etat": "À traiter",
+        "secteur": "1",
+        "observations": "",
+        "date": "2026-11-01",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.353069543838502,
+          32.33751718810399
+        ]
+      },
+      "properties": {
+        "id": "PN111",
+        "lat": 32.33751718810399,
+        "lng": -6.353069543838502,
+        "priorite": "Moyenne",
+        "etat": "À traiter",
+        "secteur": "1",
+        "observations": "",
+        "date": "2026-11-01",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.353541612625122,
+          32.33447195767572
+        ]
+      },
+      "properties": {
+        "id": "PN112",
+        "lat": 32.33447195767572,
+        "lng": -6.353541612625122,
+        "priorite": "Moyenne",
+        "etat": "À traiter",
+        "secteur": "5",
+        "observations": "",
+        "date": "2026-11-01",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.352683305740357,
+          32.34847635330281
+        ]
+      },
+      "properties": {
+        "id": "PN113",
+        "lat": 32.34847635330281,
+        "lng": -6.352683305740357,
+        "priorite": "Critique",
+        "etat": "À traiter",
+        "secteur": "1",
+        "observations": "",
+        "date": "2026-11-01",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.354442834854127,
+          32.35090257732533
+        ]
+      },
+      "properties": {
+        "id": "PN114",
+        "lat": 32.35090257732533,
+        "lng": -6.354442834854127,
+        "priorite": "Critique",
+        "etat": "À traiter",
+        "secteur": "1",
+        "observations": "",
+        "date": "2026-11-01",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.367177963256837,
+          32.347545586599175
+        ]
+      },
+      "properties": {
+        "id": "PN115",
+        "lat": 32.347545586599175,
+        "lng": -6.367177963256837,
+        "priorite": "Moyenne",
+        "etat": "À traiter",
+        "secteur": "",
+        "observations": "",
+        "date": "2026-11-02",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.377735137939454,
+          32.339856801743224
+        ]
+      },
+      "properties": {
+        "id": "PN116",
+        "lat": 32.339856801743224,
+        "lng": -6.377735137939454,
+        "priorite": "Moyenne",
+        "etat": "À traiter",
+        "secteur": "",
+        "observations": "",
+        "date": "2026-11-02",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.336064338684083,
+          32.34598612173892
+        ]
+      },
+      "properties": {
+        "id": "PN117",
+        "lat": 32.34598612173892,
+        "lng": -6.336064338684083,
+        "priorite": "Moyenne",
+        "etat": "À traiter",
+        "secteur": "",
+        "observations": "",
+        "date": "2026-11-02",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.355848312377931,
+          32.33463385829029
+        ]
+      },
+      "properties": {
+        "id": "PN118",
+        "lat": 32.33463385829029,
+        "lng": -6.355848312377931,
+        "priorite": "Moyenne",
+        "etat": "À traiter",
+        "secteur": "",
+        "observations": "",
+        "date": "2026-11-02",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.379280090332031,
+          32.35109961536832
+        ]
+      },
+      "properties": {
+        "id": "PN119",
+        "lat": 32.35109961536832,
+        "lng": -6.379280090332031,
+        "priorite": "Moyenne",
+        "etat": "À traiter",
+        "secteur": "",
+        "observations": "",
+        "date": "2026-11-02",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.406273841857911,
+          32.35142599876492
+        ]
+      },
+      "properties": {
+        "id": "PN120",
+        "lat": 32.35142599876492,
+        "lng": -6.406273841857911,
+        "priorite": "Moyenne",
+        "etat": "À traiter",
+        "secteur": "",
+        "observations": "",
+        "date": "2026-11-02",
+        "categorie": "point_noir"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.35,
+          32.338
+        ]
+      },
+      "properties": {
+        "id": "DV1",
+        "lat": 32.338,
+        "lng": -6.35,
+        "volume": "12 m³",
+        "secteur": "Secteur 1",
+        "etat": "À traiter",
+        "date": "2026-11-01",
+        "observations": "",
+        "demo": true,
+        "categorie": "dechet_vert"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.36,
+          32.335
+        ]
+      },
+      "properties": {
+        "id": "DV2",
+        "lat": 32.335,
+        "lng": -6.36,
+        "volume": "5 m³",
+        "secteur": "Secteur 2",
+        "etat": "En cours",
+        "date": "2026-11-01",
+        "observations": "",
+        "demo": true,
+        "categorie": "dechet_vert"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.354,
+          32.342
+        ]
+      },
+      "properties": {
+        "id": "DV3",
+        "lat": 32.342,
+        "lng": -6.354,
+        "volume": "8 m³",
+        "secteur": "Secteur 3",
+        "etat": "Terminée",
+        "date": "2026-11-01",
+        "observations": "",
+        "demo": true,
+        "categorie": "dechet_vert"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.347,
+          32.331
+        ]
+      },
+      "properties": {
+        "id": "DV4",
+        "lat": 32.331,
+        "lng": -6.347,
+        "volume": "3 m³",
+        "secteur": "Secteur 4",
+        "etat": "À traiter",
+        "date": "2026-11-01",
+        "observations": "",
+        "demo": true,
+        "categorie": "dechet_vert"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.343,
+          32.3395
+        ]
+      },
+      "properties": {
+        "id": "DV5",
+        "lat": 32.3395,
+        "lng": -6.343,
+        "volume": "20 m³",
+        "secteur": "Secteur 1",
+        "etat": "En cours",
+        "date": "2026-11-01",
+        "observations": "",
+        "demo": true,
+        "categorie": "dechet_vert"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.330946683883667,
+          32.33732536799815
+        ]
+      },
+      "properties": {
+        "id": "DV102",
+        "lat": 32.33732536799815,
+        "lng": -6.330946683883667,
+        "volume": "",
+        "secteur": "",
+        "etat": "À traiter",
+        "observations": "",
+        "date": "2026-11-01",
+        "categorie": "dechet_vert"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.332534551620484,
+          32.336708768951645
+        ]
+      },
+      "properties": {
+        "id": "DV103",
+        "lat": 32.336708768951645,
+        "lng": -6.332534551620484,
+        "volume": "",
+        "secteur": "",
+        "etat": "À traiter",
+        "observations": "",
+        "date": "2026-11-01",
+        "categorie": "dechet_vert"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.412153244018556,
+          32.35831604003866
+        ]
+      },
+      "properties": {
+        "id": "DV121",
+        "lat": 32.35831604003866,
+        "lng": -6.412153244018556,
+        "volume": "",
+        "secteur": "",
+        "etat": "À traiter",
+        "observations": "",
+        "date": "2026-11-02",
+        "categorie": "dechet_vert"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.416959762573243,
+          32.347763184209974
+        ]
+      },
+      "properties": {
+        "id": "DV122",
+        "lat": 32.347763184209974,
+        "lng": -6.416959762573243,
+        "volume": "",
+        "secteur": "",
+        "etat": "À traiter",
+        "observations": "",
+        "date": "2026-11-02",
+        "categorie": "dechet_vert"
+      }
+    }
+  ]
+}
