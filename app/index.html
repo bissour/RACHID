@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DataSaisie – Saisie, analyse et visualisation de données</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="vendor/chart.umd.js"></script>
+  <script src="vendor/xlsx.full.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <h1>📊 DataSaisie</h1>
+  <div class="dataset-info">
+    <label>Jeu de données :
+      <input id="datasetName" type="text" value="Sans titre">
+    </label>
+    <span id="datasetStats" class="muted"></span>
+  </div>
+  <div class="top-actions">
+    <button id="undoBtn" title="Annuler la dernière opération (Ctrl+Z)">↶ Annuler</button>
+    <button id="redoBtn" title="Rétablir (Ctrl+Y)">↷ Rétablir</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="saisie">✏️ Saisie</button>
+  <button class="tab" data-tab="donnees">📋 Données</button>
+  <button class="tab" data-tab="traitement">⚙️ Traitement</button>
+  <button class="tab" data-tab="analyse">📈 Analyse</button>
+  <button class="tab" data-tab="visualisation">📊 Visualisation</button>
+</nav>
+
+<main>
+  <!-- ============ SAISIE ============ -->
+  <section id="tab-saisie" class="panel active">
+    <div class="grid2">
+      <div class="card">
+        <h2>Structure (colonnes)</h2>
+        <p class="muted">Définissez les champs de votre formulaire de saisie.</p>
+        <form id="addColumnForm" class="row">
+          <input id="newColName" placeholder="Nom de la colonne" required>
+          <select id="newColType">
+            <option value="text">Texte</option>
+            <option value="number">Nombre</option>
+            <option value="date">Date</option>
+          </select>
+          <button type="submit" class="primary">+ Ajouter</button>
+        </form>
+        <table class="mini">
+          <thead><tr><th>Colonne</th><th>Type</th><th></th></tr></thead>
+          <tbody id="columnsList"></tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h2>Formulaire de saisie</h2>
+        <form id="entryForm">
+          <div id="entryFields"></div>
+          <div class="row">
+            <button type="submit" class="primary">Enregistrer la ligne</button>
+            <button type="reset">Vider</button>
+          </div>
+          <p id="entryMsg" class="msg"></p>
+        </form>
+        <h3>Dernières saisies</h3>
+        <div id="lastEntries" class="table-wrap small"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DONNÉES ============ -->
+  <section id="tab-donnees" class="panel">
+    <div class="card">
+      <h2>Importer</h2>
+      <div class="row wrap">
+        <input type="file" id="fileInput" accept=".csv,.tsv,.txt,.json,.geojson,.xlsx,.xls,.ods">
+        <label><input type="radio" name="importMode" value="replace" checked> Remplacer</label>
+        <label><input type="radio" name="importMode" value="append"> Ajouter à la suite</label>
+        <button id="pasteBtn">Coller du texte…</button>
+        <button id="sampleBtn">Charger un exemple</button>
+      </div>
+      <div id="pasteArea" class="hidden">
+        <textarea id="pasteText" rows="6" placeholder="Collez ici des données CSV / TSV (copiées d'Excel) ou JSON"></textarea>
+        <div class="row"><button id="pasteImportBtn" class="primary">Importer le texte</button></div>
+      </div>
+      <p id="importMsg" class="msg"></p>
+    </div>
+
+    <div class="card">
+      <div class="row wrap between">
+        <h2>Tableau de données</h2>
+        <div class="row wrap">
+          <input id="searchInput" type="search" placeholder="🔍 Rechercher…">
+          <button id="addRowBtn">+ Ligne vide</button>
+          <button id="deleteSelectedBtn" class="danger">Supprimer la sélection</button>
+          <button id="clearBtn" class="danger">Tout effacer</button>
+        </div>
+      </div>
+      <p class="muted">Double-cliquez sur une cellule pour la modifier (Entrée pour valider, Échap pour annuler). Cliquez sur un en-tête pour trier.</p>
+      <div id="dataTable" class="table-wrap"></div>
+      <div class="row between">
+        <div id="pager" class="row"></div>
+        <div class="row">
+          <span class="muted">Exporter :</span>
+          <button data-export="csv">CSV</button>
+          <button data-export="json">JSON</button>
+          <button data-export="xlsx">Excel</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRAITEMENT ============ -->
+  <section id="tab-traitement" class="panel">
+    <div class="ops-grid">
+      <div class="card op">
+        <h3>Convertir le type d'une colonne</h3>
+        <select data-col id="convCol"></select>
+        <select id="convType">
+          <option value="number">→ Nombre (nettoie €, $, espaces, séparateurs)</option>
+          <option value="text">→ Texte</option>
+          <option value="date">→ Date (AAAA-MM-JJ)</option>
+        </select>
+        <select id="convDateFmt">
+          <option value="dmy">Dates d'origine en JJ/MM/AAAA</option>
+          <option value="mdy">Dates d'origine en MM/JJ/AAAA</option>
+        </select>
+        <button class="primary" id="convBtn">Convertir</button>
+      </div>
+
+      <div class="card op">
+        <h3>Valeurs manquantes</h3>
+        <select data-col data-allow-all id="naCol"></select>
+        <select id="naMethod">
+          <option value="drop">Supprimer les lignes concernées</option>
+          <option value="value">Remplacer par une valeur</option>
+          <option value="mean">Remplacer par la moyenne</option>
+          <option value="median">Remplacer par la médiane</option>
+          <option value="mode">Remplacer par la valeur la plus fréquente</option>
+          <option value="ffill">Recopier la valeur précédente</option>
+        </select>
+        <input id="naValue" placeholder="Valeur de remplacement">
+        <button class="primary" id="naBtn">Appliquer</button>
+      </div>
+
+      <div class="card op">
+        <h3>Doublons</h3>
+        <p class="muted">Supprime les lignes identiques (sur toutes les colonnes ou sur une colonne clé).</p>
+        <select data-col data-allow-all id="dupCol"></select>
+        <button class="primary" id="dupBtn">Supprimer les doublons</button>
+      </div>
+
+      <div class="card op">
+        <h3>Filtrer (conserver les lignes où…)</h3>
+        <select data-col id="filtCol"></select>
+        <select id="filtOp">
+          <option value="eq">=</option>
+          <option value="ne">≠</option>
+          <option value="gt">&gt;</option>
+          <option value="ge">≥</option>
+          <option value="lt">&lt;</option>
+          <option value="le">≤</option>
+          <option value="contains">contient</option>
+          <option value="notcontains">ne contient pas</option>
+          <option value="empty">est vide</option>
+          <option value="notempty">n'est pas vide</option>
+        </select>
+        <input id="filtValue" placeholder="Valeur">
+        <button class="primary" id="filtBtn">Filtrer</button>
+      </div>
+
+      <div class="card op">
+        <h3>Rechercher / remplacer</h3>
+        <select data-col data-allow-all id="repCol"></select>
+        <input id="repFind" placeholder="Rechercher">
+        <input id="repWith" placeholder="Remplacer par">
+        <label class="inline"><input type="checkbox" id="repExact"> Cellule entière uniquement</label>
+        <button class="primary" id="repBtn">Remplacer</button>
+      </div>
+
+      <div class="card op">
+        <h3>Nettoyer le texte</h3>
+        <select data-col data-allow-all id="txtCol"></select>
+        <select id="txtOp">
+          <option value="trim">Supprimer les espaces superflus</option>
+          <option value="upper">MAJUSCULES</option>
+          <option value="lower">minuscules</option>
+          <option value="title">Première Lettre En Majuscule</option>
+          <option value="accents">Supprimer les accents</option>
+        </select>
+        <button class="primary" id="txtBtn">Appliquer</button>
+      </div>
+
+      <div class="card op">
+        <h3>Colonne calculée</h3>
+        <input id="calcName" placeholder="Nom de la nouvelle colonne">
+        <input id="calcExpr" placeholder="Ex : [Prix] * [Quantité]">
+        <p class="muted small">Utilisez <code>[Nom colonne]</code>, + − * / ( ), et les fonctions <code>round, abs, sqrt, min, max, pow, log, concat, upper, lower, year, month, si(cond, a, b)</code>.</p>
+        <button class="primary" id="calcBtn">Créer la colonne</button>
+      </div>
+
+      <div class="card op">
+        <h3>Trier les données</h3>
+        <select data-col id="sortCol"></select>
+        <select id="sortDir">
+          <option value="asc">Croissant</option>
+          <option value="desc">Décroissant</option>
+        </select>
+        <button class="primary" id="sortBtn">Trier</button>
+      </div>
+
+      <div class="card op">
+        <h3>Discrétiser (classes)</h3>
+        <p class="muted small">Découpe une colonne numérique en classes d'amplitude égale.</p>
+        <select data-col data-numeric id="binCol"></select>
+        <input id="binN" type="number" min="2" max="50" value="5">
+        <button class="primary" id="binBtn">Créer la colonne de classes</button>
+      </div>
+    </div>
+    <p id="procMsg" class="msg"></p>
+    <div class="card">
+      <h3>Journal des opérations</h3>
+      <ol id="opLog" class="log"></ol>
+    </div>
+  </section>
+
+  <!-- ============ ANALYSE ============ -->
+  <section id="tab-analyse" class="panel">
+    <div class="card">
+      <h2>Statistiques descriptives</h2>
+      <div id="statsTable" class="table-wrap"></div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h2>Tableau croisé / regroupement</h2>
+        <div class="row wrap">
+          <label>Regrouper par <select data-col id="grpCol"></select></label>
+          <label>Valeur <select data-col data-numeric data-allow-none id="grpVal"></select></label>
+          <label>Fonction
+            <select id="grpAgg">
+              <option value="count">Nombre</option>
+              <option value="sum">Somme</option>
+              <option value="mean">Moyenne</option>
+              <option value="median">Médiane</option>
+              <option value="min">Minimum</option>
+              <option value="max">Maximum</option>
+              <option value="std">Écart-type</option>
+            </select>
+          </label>
+          <button class="primary" id="grpBtn">Calculer</button>
+          <button id="grpToChart">→ Graphique</button>
+        </div>
+        <div id="grpResult" class="table-wrap"></div>
+      </div>
+      <div class="card">
+        <h2>Fréquences</h2>
+        <div class="row wrap">
+          <label>Colonne <select data-col id="freqCol"></select></label>
+          <button class="primary" id="freqBtn">Calculer</button>
+        </div>
+        <div id="freqResult" class="table-wrap"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Matrice de corrélation (Pearson)</h2>
+      <div id="corrResult" class="table-wrap"></div>
+    </div>
+  </section>
+
+  <!-- ============ VISUALISATION ============ -->
+  <section id="tab-visualisation" class="panel">
+    <div class="card">
+      <div class="row wrap">
+        <label>Type
+          <select id="chartType">
+            <option value="bar">Barres</option>
+            <option value="barh">Barres horizontales</option>
+            <option value="line">Courbe</option>
+            <option value="pie">Secteurs</option>
+            <option value="doughnut">Anneau</option>
+            <option value="scatter">Nuage de points</option>
+            <option value="hist">Histogramme</option>
+          </select>
+        </label>
+        <label>Axe X / catégorie <select data-col id="chartX"></select></label>
+        <label>Agrégation
+          <select id="chartAgg">
+            <option value="none">Aucune (valeurs brutes)</option>
+            <option value="sum">Somme</option>
+            <option value="mean">Moyenne</option>
+            <option value="count">Nombre</option>
+            <option value="min">Minimum</option>
+            <option value="max">Maximum</option>
+          </select>
+        </label>
+        <label>Tri
+          <select id="chartSort">
+            <option value="none">Ordre des données</option>
+            <option value="x">Par X</option>
+            <option value="yasc">Par valeur ↑</option>
+            <option value="ydesc">Par valeur ↓</option>
+          </select>
+        </label>
+        <label>Limite <input id="chartLimit" type="number" min="0" value="0" title="0 = pas de limite" style="width:5em"></label>
+      </div>
+      <div class="row wrap">
+        <span>Séries Y :</span>
+        <div id="chartY" class="checks"></div>
+      </div>
+      <div class="row">
+        <button class="primary" id="chartBtn">Tracer</button>
+        <button id="chartPng">Télécharger PNG</button>
+      </div>
+      <p id="chartMsg" class="msg"></p>
+      <div class="chart-box"><canvas id="chartCanvas"></canvas></div>
+    </div>
+  </section>
+</main>
+
+<dialog id="colDialog">
+  <form method="dialog" id="colDialogForm">
+    <h3>Modifier la colonne</h3>
+    <label>Nom <input id="colDialogName" required></label>
+    <label>Type
+      <select id="colDialogType">
+        <option value="text">Texte</option>
+        <option value="number">Nombre</option>
+        <option value="date">Date</option>
+      </select>
+    </label>
+    <div class="row">
+      <button value="cancel" formnovalidate>Annuler</button>
+      <button value="ok" class="primary">Valider</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
